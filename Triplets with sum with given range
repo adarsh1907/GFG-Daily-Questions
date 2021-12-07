@@ -1,0 +1,30 @@
+class Solution {
+  public:
+    int help(int arr[],int n,int R){
+        int res=0;
+        for(int i=0;i<n-2;i++){
+            int sum=arr[i];
+            int start=i+1;
+            int end=n-1;
+            while(start<end){
+                int sum1=arr[start]+arr[end]+sum;
+                if(sum1>R){
+                    end--;
+                }
+                else{
+                    res+=(end-start);
+                    start++;
+                }
+            }
+           // cout<<res<<" "<<endl;
+        }
+        return res;
+    }
+    int countTriplets(int arr[], int n, int L, int R) {
+        // code here
+        sort(arr,arr+n);
+        int res1=help(arr,n,R);
+        int res2=help(arr,n,L-1);
+        return res1-res2;
+    }
+};
