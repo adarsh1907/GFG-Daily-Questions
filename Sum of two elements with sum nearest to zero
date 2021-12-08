@@ -1,0 +1,14 @@
+int closestToZero(int arr[], int n){
+     // your code here 
+     int ans=INT_MAX;
+     sort(arr,arr+n);
+     int i=0,j=n-1;
+     while(i<j){
+         int sum=arr[i]+arr[j];
+         if(abs(sum)==abs(ans)) ans=max(sum,ans);
+         if(abs(sum)<abs(ans)) ans=sum;
+         if(sum>0) j--;
+         else i++;
+     }
+     return ans;
+}
