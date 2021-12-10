@@ -1,0 +1,32 @@
+int maxXor(int arr[], int n)
+	{
+		// Your code goes here
+        int index=0;
+        for(int i=31;i>=0;i--){
+            int maxele=INT_MIN;
+            int maxindex=index;
+            for(int j=index;j<n;j++){
+                int setbit=(arr[j]>>i)&1;
+                if(setbit!=0 && maxele<arr[j]){
+                    maxele=arr[j];
+                    maxindex=j;
+                }
+            }
+            if(maxele==INT_MIN) continue;
+            
+            int temp=arr[index];
+            arr[index]=arr[maxindex];
+            arr[maxindex]=temp;
+            maxindex=index;
+            for(int j=0;j<n;j++){
+                int setbit =(arr[j]>>i)&1;
+                if(setbit!=0 && j!=maxindex){
+                    arr[j]=arr[j]^arr[maxindex];
+                }
+            }
+            index++;
+        }
+        int ans=0;
+        for(int i=0;i<n;i++) ans^=arr[i];
+        return ans;
+	}
