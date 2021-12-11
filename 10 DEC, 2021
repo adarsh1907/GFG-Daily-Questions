@@ -1,3 +1,5 @@
+Q - Maximum XOR Subset
+
 int maxXor(int arr[], int n)
 	{
 		// Your code goes here
