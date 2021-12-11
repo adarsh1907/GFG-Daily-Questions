@@ -1,3 +1,5 @@
+Q - Triplets with sum with given range
+
 class Solution {
   public:
     int help(int arr[],int n,int R){
