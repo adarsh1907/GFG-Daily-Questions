@@ -1,0 +1,22 @@
+Q - Find n/k th node in Linked list
+
+int fractional_node(struct Node *head, int k)
+{
+    // your code here
+    Node *temp=head;
+    int n=0;
+    while(temp){
+        temp=temp->next;
+        n++;
+    }
+    int ans=0;
+    int m=ceil(n/k);
+    if(n%k){
+        m=m+1;
+    }
+    while(m--){
+        ans=head->data;
+        head=head->next;
+    }
+    return ans;
+}
