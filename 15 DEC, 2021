@@ -1,0 +1,21 @@
+Q - First negative integer in every window of size k
+
+vector<long long> printFirstNegativeInteger(long long int A[],
+                                             long long int N, long long int K) {
+        vector<long long>v;
+        queue<pair<int,long long>>q;
+        for(int i=0;i<N;i++){
+            if(A[i]<0) q.push({i,A[i]});
+        }
+        for(int i=0;i<=N-K;i++){
+            if(!q.empty() && i+K>q.front().first){
+                v.push_back(q.front().second);
+                if(A[i]==q.front().second) q.pop();
+            }
+            else{
+                v.push_back(0);
+            }
+        }
+        return v;
+                                                 
+ }
