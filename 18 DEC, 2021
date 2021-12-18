@@ -1,5 +1,18 @@
 Q - Maximum difference between node and its ancestor
 
+void dfs(Node *v,int mx,int &ans){
+    if(!v)return;
+    ans=max(ans,mx-v->data);
+    dfs(v->left,max(mx,v->data),ans);
+    dfs(v->right,max(mx,v->data),ans);
+}
+int maxDiff(Node* root){
+    int ans=INT_MIN;
+    dfs(root,-1e8,ans);
+    return ans;
+}
+
+// Another Solution
 int help(Node* root,int &mx){
     if(root == NULL) return INT_MAX;
     if(root->left == NULL && root->right == NULL) return root->data;
