@@ -1,0 +1,17 @@
+Q - Maximum difference between node and its ancestor
+
+int help(Node* root,int &mx){
+    if(root == NULL) return INT_MAX;
+    if(root->left == NULL && root->right == NULL) return root->data;
+    int l = help(root->left , mx);
+    int r = help(root->right , mx);
+    int mn = min(l,r);
+    mx = max(mx,root->data-mn);
+    return min(mn,root->data);//for a-b to be max , b should be min
+}
+int maxDiff(Node* root)
+{
+    int mx = INT_MIN;
+    help(root,mx);
+    return mx;
+}
