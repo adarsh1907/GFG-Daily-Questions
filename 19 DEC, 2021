@@ -1,0 +1,42 @@
+Q - Encrypt the string - 2
+
+string hex(int n,unordered_map<int,char> &hexCodes){
+        string res = "";
+        while(n>0){
+            int rem = n%16;
+            n /= 16;
+            res += hexCodes[rem];
+        }
+        // I follow (lsb to msb) right to left  convention 
+        return res;
+    }
+    string encryptString(string S) {
+        // code here
+        int n=S.size();
+        unordered_map<int,char>hexCode;
+        for(int i=0; i<10; i++){
+            hexCode[i] = char(i-0+'0');
+        }
+        for(int i=10; i<16; i++){
+            hexCode[i] = char(i-10+'a');
+        }
+        int i=0,j=1,count=1;
+        string ans;
+        ans+=S[0];
+        while(i<n && j<n){
+            if(S[i]!=S[j]){
+                ans+=hex(count,hexCode);
+                ans+=S[j];
+                count=1;
+                i=j;
+                j++;
+            }
+            else{
+                count++;
+                j++;
+            }
+        }
+        ans+=hex(count,hexCode);
+        reverse(ans.begin(),ans.end());
+        return ans;
+    }
