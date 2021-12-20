@@ -1,0 +1,24 @@
+Q - Possible paths between 2 vertices
+
+    int ans=0;
+    void dfs(int v,vector<int> adj[],int src,int des,vector<bool> &vis){
+        vis[src]=true;
+        if(src==des){
+            ans++;
+        }
+        else{
+            for(auto neigh:adj[src]){
+                if(!vis[neigh]){
+                    dfs(v,adj,neigh,des,vis);
+                }
+            }
+        }
+        vis[src]=false;
+    }
+    int countPaths(int V, vector<int> adj[], int source, int destination) {
+        // Code here
+        ans=0;
+        vector<bool>vis(V,false);
+        dfs(V,adj,source,destination,vis);
+        return ans;
+    }
