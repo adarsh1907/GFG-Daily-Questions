@@ -1,0 +1,23 @@
+Q - Evaluation of Postfix Expression
+
+int evaluatePostfix(string S)
+    {
+        // Your code here
+        stack<int>s;
+        for(int i=0;i<S.size();i++){
+            if(S[i]>='0' && S[i]<='9') s.push((S[i]-'0'));
+            else{
+                int val1 = s.top();
+                s.pop();
+                int val2 = s.top();
+                s.pop();
+                switch (S[i]){ 
+                    case '+': s.push(val2 + val1); break; 
+                    case '-': s.push(val2 - val1); break; 
+                    case '*': s.push(val2 * val1); break; 
+                    case '/': s.push(val2/val1); break; 
+                } 
+            }
+        }
+        return s.top();
+    }
