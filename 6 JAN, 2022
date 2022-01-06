@@ -1,0 +1,20 @@
+Q - Longest Common Prefix in an Array
+
+class Solution{
+  public:
+    
+    string longestCommonPrefix (string arr[], int N)
+    {
+        // your code here
+        sort(arr,arr+N);
+        string s=arr[0];
+        string b=arr[N-1];
+        string res;
+        for(int i=0;i<s.size();i++){
+            if(s[i]==b[i]) res+=s[i];
+            else break;
+        }
+        if(res.size()==0) return "-1";
+        return res;
+    }
+};
