@@ -1,0 +1,26 @@
+Q - Add 1 to a number represented as linked list 
+
+class Solution
+{
+    public:
+    int carry=1;
+    void add(Node* &root){
+        if(!root) return;
+        add(root->next);
+        int val=(root->data+carry)%10;
+        carry=(root->data+carry)/10;
+        root->data=val;
+    }
+    Node* addOne(Node *head) 
+    {
+        // Your Code here
+        // return head of list after adding one
+        add(head);
+        if(carry){
+            Node *temp=new Node(carry);
+            temp->next=head;
+            head=temp;
+        }
+        return head;
+    }
+};
