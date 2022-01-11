@@ -1,0 +1,17 @@
+Q - Clone a stack without usinig extra space
+
+class Solution{
+    public:
+    void clo(stack<int>& st,stack<int>& cloned){
+        if(st.empty()) return;
+        int a=st.top();
+        st.pop();
+        clo(st,cloned);
+        cloned.push(a);
+    }
+    void clonestack(stack<int> st, stack<int>& cloned)
+    {
+        //code here
+        clo(st,cloned);
+    }
+};
