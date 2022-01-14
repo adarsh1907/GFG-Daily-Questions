@@ -1,0 +1,17 @@
+Q - Add all greater values to every node in a BST
+
+void sumOfNodes(Node* root, int &sum) {
+    if(root == NULL) return;
+    sumOfNodes(root->right, sum);
+    root->data = root->data + sum;
+    sum = root->data;
+    sumOfNodes(root->left, sum);
+}
+
+Node* modify(Node *root)
+{
+    // Your code here
+    int sum = 0;
+    sumOfNodes(root, sum);
+    return root;
+}
