@@ -1,0 +1,41 @@
+Q - Maximum sum of Non-adjacent nodes
+
+unordered_map <Node* ,int> dp;
+
+class Solution{
+ public:
+   //Function to return the maximum sum of non-adjacent nodes.
+   int getMax(Node* root){
+       if(root==NULL){
+           return 0;
+       }
+       // op1 include root->data;
+       
+       if(dp.find(root)!=dp.end()){
+           return dp[root];
+       }
+       int a=0;
+       int b=0;
+       
+       if(root->left){
+           a=getMax(root->left->left)+getMax(root->left->right);
+       }
+       
+       if(root->right){
+           b=getMax(root->right->left)+getMax(root->right->right);
+       }
+       
+       dp[root]=max(root->data+a+b,(getMax(root->left)+getMax(root->right)));
+       
+       return dp[root];
+   }
+   int getMaxSum(Node *root) 
+   {
+       // Add your code here
+       
+       getMax(root);
+       
+       return dp[root];
+  
+   }
+};
