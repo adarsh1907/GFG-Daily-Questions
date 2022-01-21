@@ -1,0 +1,28 @@
+Q - Leaves to DLL
+
+Node* dfs(Node *root,Node* &head,Node* &prev){
+    if(!root) return NULL;
+    if(!root->left && !root->right){
+        if(head==NULL){
+            head=root;
+            prev=root;
+        }
+        else{
+            prev->right=root;
+            root->left=prev;
+            prev= root;
+        }
+        return NULL;
+    }
+    root->left=dfs(root->left,head,prev);
+    root->right=dfs(root->right,head,prev);
+}
+
+// return the head of the DLL and remove those node from the tree as well.
+Node * convertToDLL(Node *root){
+    // add code here.
+    Node *head=NULL;
+    Node *prev=NULL;
+    dfs(root,head,prev);
+    return head;
+}
