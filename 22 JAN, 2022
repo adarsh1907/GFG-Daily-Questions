@@ -1,0 +1,30 @@
+Q - Distinct palindromic substrings
+
+class Solution{
+  public:
+    bool isPali(string a){
+        int n=a.size();
+        if(n==1) return true;
+        int i=0,j=n-1;
+        while(i<j){
+            if(a[i]!=a[j]) return false;
+            i++,j--;
+        }
+        return true;
+    }
+    
+    int palindromeSubStrs(string s) {
+        // code here
+        unordered_map<string,int>mp;
+        for(int i=0;i<s.size();i++){
+            for(int j=i;j<s.size();j++){
+                if(isPali(s.substr(i,j-i+1))){
+                    mp[s.substr(i,j-i+1)]=1;
+                }
+            }
+        }
+        int ans=0;
+        for(auto i:mp)ans+=i.second;
+        return ans;
+    }
+};
