@@ -1,0 +1,16 @@
+Q - Handshakes
+
+int count(int N){
+        // code here
+        if(N%2 != 0){
+            return 0;
+        }
+        if(N == 0){
+            return 1;//base case in my recursive step
+        }
+        int res = 0;
+        for(int i=0; i<N; i+=2){
+            res += (count(i)*count(N-i-2));
+        }
+        return res;
+    }
