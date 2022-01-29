@@ -1,0 +1,28 @@
+Q - Reverse words in a given string 
+
+class Solution
+{
+    public:
+    //Function to reverse words in a given string.
+    string reverseWords(string s) 
+    { 
+        // code here 
+        string ans = "";
+        string temp = "";
+        int i =0 , n = s.size();
+        while(i < n){
+            temp = "";
+            while(i<n && s[i]!= '.'){
+                temp+=s[i];
+                i++;
+            }
+            if(ans.size() ==0){
+                ans = temp;
+            }else{
+                ans = temp + '.' + ans;
+            }
+            i++;
+        }
+        return ans;
+    } 
+};
