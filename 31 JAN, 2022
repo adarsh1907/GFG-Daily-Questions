@@ -1,0 +1,40 @@
+Q - Cousins of a given node
+
+class Solution
+{
+    public:
+    vector<int> printCousins(Node* root, Node* node_to_find)
+    {
+        //code here
+        vector<int> ans;
+        queue<Node*> Q;
+        Q.push(root);
+        bool f = false;
+        while(!Q.empty()){
+            int sz = Q.size();
+            while(sz--){
+                Node* temp = Q.front();
+                Q.pop();
+                if(temp->left == node_to_find or temp->right == node_to_find)
+                f = true;
+                else{
+                    if(temp->left)
+                    Q.push(temp->left);
+                    if(temp->right)
+                    Q.push(temp->right);
+                }
+            }
+            if(f){
+                while(!Q.empty()){
+                    ans.push_back(Q.front()->data);
+                    Q.pop();
+                }
+                break;
+            }
+        }
+        if(ans.empty())
+        ans.push_back(-1);
+        return ans;
+    }
+    
+};
